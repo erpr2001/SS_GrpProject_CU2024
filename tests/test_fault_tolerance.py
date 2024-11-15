@@ -3,6 +3,10 @@ from src.fault_tolerance.replication import replicate_data
 from src.fault_tolerance.recovery import monitor_health, recovery_action
 import os
 import shutil
+import sys
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
 
 class TestFaultTolerance(unittest.TestCase):
     def test_data_replication(self):
@@ -24,6 +28,10 @@ class TestFaultTolerance(unittest.TestCase):
         # Cleanup
         shutil.rmtree(dest_dir)
         os.remove(source_file)
+    
+    def mock_node_status(self):
+        # Simulate a node failure (returns False)
+        return False
 
     def test_recovery_action(self):
         # Mock the node failure scenario and recovery action
@@ -32,9 +40,7 @@ class TestFaultTolerance(unittest.TestCase):
         except Exception as e:
             self.fail(f"Error during fault tolerance test: {e}")
 
-    def mock_node_status(self):
-        # Simulate a node failure (returns False)
-        return False
+    
 
 if __name__ == "__main__":
     unittest.main()

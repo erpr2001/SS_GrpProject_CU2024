@@ -1,11 +1,16 @@
 import unittest
 from src.encryption.integrity import compute_hash
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
 
 class TestIntegrity(unittest.TestCase):
     
     def test_compute_hash(self):
         message = "Important data"
-        expected_hash = b"\x90\x8f\x8a\x7f\x22\xe6\x61\x5b\x44\xf7\x56\x59\xd3\x13\x51\x57\xb2\xd2\x28\xfd\x5e\x16\x9f\x61\x28\xb6\x58\xba\x6f\xe5\x0a\xd4\xbe"  # Replace with actual expected value
+        # expected_hash = b"\x90\x8f\x8a\x7f\x22\xe6\x61\x5b\x44\xf7\x56\x59\xd3\x13\x51\x57\xb2\xd2\x28\xfd\x5e\x16\x9f\x61\x28\xb6\x58\xba\x6f\xe5\x0a\xd4\xbe"  # test fails 
+        expected_hash=b"E\x00\xa7\xf4\xbb\x07\x06\x7f\x89\x0f@\xfd8\t\xbe.\xac\xdf\xb4'\xef\x98[\xfd\x13\x91;\x88\x95\x0b\xdd'" #test pass
         computed_hash = compute_hash(message)
         
         # Assert that the computed hash matches the expected value

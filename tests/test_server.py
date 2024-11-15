@@ -2,8 +2,25 @@ import unittest
 import socket
 import ssl
 from src.server.server import start_server
+import threading
+import time 
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
 
 class TestServer(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        """Start the server in a separate thread before running the tests"""
+        cls.server_thread = threading.Thread(target=start_server, daemon=True)
+        cls.server_thread.start()
+        
+        # Give the server some time to start up
+        time.sleep(1)  # Adjust the sleep time based on how long the server needs to start
+
+
     def test_server_connection(self):
         # Simulate a client connecting to the server
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

@@ -4,6 +4,10 @@ import ssl
 # import sys
 # import os
 from src.client.client import start_client
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
 
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
