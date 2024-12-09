@@ -1,5 +1,5 @@
 
-from final_project_code import ConsensusNode
+from src.System.final_project import ConsensusNode
 
 def main():
     # Create three nodes for testing

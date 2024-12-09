@@ -7,6 +7,7 @@ import base64
 import os
 import time
 import threading
+import matplotlib.pyplot as plt
 
 class SimulatedConnection:
     """Simulates a connection between nodes without real sockets."""
